@@ -57,7 +57,8 @@ source=("ftp://gcc.gnu.org/pub/gcc/releases/${_realname}-${pkgver}/${_realname}-
         'enable-shared-gnat-implib.mingw.patch'
         '955-4.9.2-apply-hack-so-gcc_s-isnt-stripped.patch'
         'pr66035.patch'
-        '0022-clone_function_name_1-Retain-any-stdcall-suffix.patch')
+        '0022-clone_function_name_1-Retain-any-stdcall-suffix.patch'
+        'tsfactory-fixes.patch')
 md5sums=('a51bcfeb3da7dd4c623e27207ed43467'
          '41635a40493dc79416db6627b2826b21'
          'f6b5fb08ff06a7d60ee3280e14240bb2'
@@ -81,7 +82,8 @@ md5sums=('a51bcfeb3da7dd4c623e27207ed43467'
          '62cc23251ae746b5f39c2c7aef121e8f'
          '393ce6bf124d5b1ca0e38cbe0fc6eb51'
          '5b980076cd5fcbc3aff6014f306282dd'
-         '6d0a782eef0077ddbffd130f806529fa')
+         '6d0a782eef0077ddbffd130f806529fa'
+         '4e3f08e94feaa7806537fe837478b803')
 
 _threads="posix"
 
@@ -128,7 +130,7 @@ prepare() {
   patch -p1 -i ${srcdir}/230-build-more-gnattools.mingw.patch
 
   patch -p1 -i ${srcdir}/240-prettify-linking-no-undefined.mingw.patch
-  
+
   patch -p1 -i ${srcdir}/310-gcc-make-xmmintrin-header-cplusplus-compatible.patch
 
   if [ "${CARCH}" = "i686" ]; then
@@ -150,6 +152,8 @@ prepare() {
   patch -p1 -i ${srcdir}/pr66035.patch
 
   patch -p1 -i ${srcdir}/0022-clone_function_name_1-Retain-any-stdcall-suffix.patch
+
+  patch -p1 -i ${srcdir}/tsfactory-fixes.patch
 
   #if check_option "debug" "y"; then
     # Expose some libgomp internals for debugging.
